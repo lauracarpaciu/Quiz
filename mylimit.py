@@ -11,8 +11,8 @@ mydb = mysql.connector.connect(
 )
 
 mycursor = mydb.cursor()  # Instantiates and returns a cursor
-mycursor.execute("SELECT * FROM players LIMIT 5 OFFSET 2")
+mycursor.execute("SELECT name, team  FROM players LIMIT 8 OFFSET 2")
 
 myresult = mycursor.fetchall()
-for x in myresult:
-  print(x)
+for line in myresult:
+  print(line)

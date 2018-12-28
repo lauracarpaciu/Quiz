@@ -15,7 +15,10 @@ sql = "INSERT INTO players (team, name) VALUES (%s, %s)"
 val = [
     ["FC Real Madrid", "Cristiano Ronaldo"], ["FC Villarreal", "Bruno Soriano"], ["FC Barcelona", "Lionel Messi"],
     ["FC Atl. Madrid", "Gabriel Fernández"], ["FC Sevilla", "Julien Escudé"], ["FC Valencia", "Dani Parejo"],
-    ["FC Ath. Bilbao", "Gorka Iraizoz"], ["FC Espanyol", "Javi López"]
+    ["FC Ath. Bilbao", "Gorka Iraizoz"], ["FC Espanyol", "Javi López"], ["FC Valencia", "Dani Parejo"],
+    ["FC Valencia", "K. Casilla"], ["FC Valencia", "Courtois"], ["FC Valencia", "Luca"],
+    ["FC Valencia", "Carvajal"], ["FC Valencia", "Vallejo"], ["FC Valencia", "Sergio Ramos"],
+    ["FC Valencia", "Varane"]
 ]
 
 '''The executemany() method will execute the operation iterating
@@ -23,4 +26,3 @@ val = [
 mycursor.executemany(sql, val)
 
 mydb.commit()
-
