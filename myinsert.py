@@ -11,7 +11,7 @@ mydb = mysql.connector.connect(
 )
 
 mycursor = mydb.cursor()  # Instantiates and returns a cursor
-sql = "INSERT INTO players (name, team) VALUES (%s, %s)"
+sql = "INSERT INTO players (team, name) VALUES (%s, %s)"
 val = [
     ["FC Real Madrid", "Cristiano Ronaldo"], ["FC Villarreal", "Bruno Soriano"], ["FC Barcelona", "Lionel Messi"],
     ["FC Atl. Madrid", "Gabriel Fernández"], ["FC Sevilla", "Julien Escudé"], ["FC Valencia", "Dani Parejo"],
@@ -23,3 +23,4 @@ val = [
 mycursor.executemany(sql, val)
 
 mydb.commit()
+
