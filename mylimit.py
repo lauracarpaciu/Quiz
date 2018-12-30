@@ -1,4 +1,5 @@
 import mysql.connector
+import random
 
 mydb = mysql.connector.connect(
     host="localhost",
@@ -18,7 +19,7 @@ if no_questions >= len(myresult):
 questions = []
 index_deja_luat = []
 
-index
+index = random.randint()
 for no_questions in range(no_questions + 1):
 while(index_deja_luat.__contains__(index))
     l = len(myresult)
