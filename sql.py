@@ -1,19 +1,27 @@
 import mysql.connector
-import time
-import datetime
 import random
 
 mydb = mysql.connector.connect(
-  host="localhost",
-  user="mirela",
-  passwd="12345678"
+    host="localhost",
+    user="mirela",
+    passwd="12345678",
+    database="mypython"
 )
 
 mycursor = mydb.cursor()
 
 
+def create_db():
+    mycursor.execute("CREATE DATABASE mypython")
+
+
 def create_table():
     mycursor.execute("CREATE TABLE players (name VARCHAR(255), team VARCHAR(255))")
+
+
+def alter_table():
+    mycursor.execute("ALTER TABLE players ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY")
+
 
 def data_entry():
     sql = "INSERT INTO players (team, name) VALUES (%s, %s)"
@@ -29,26 +37,62 @@ def data_entry():
     '''The executemany() method will execute the operation iterating
             over the list of parameters in seq_params.'''
     mycursor.executemany(sql, val)
-    mydb.commit()
-    mycursor.close()
-    mydb.close()
 
-def dynamic_data_entry():
-    unix = time.time()
-    date = str(datetime.datetime.fromtimestamp(unix)).__str__("%Y-%m-%d %H: %M: %S")
-    keyword = "Python"
-    sql = "INSERT INTO players (unix, datestamp,keyword,value) VALUES (%s, %s)"
-    mycursor.execute(sql)
+    mydb.commit()
+
 
 def read_from_db():
     mycursor.execute("SELECT name, team FROM players LIMIT 9 OFFSET 2")
     myresult = mycursor.fetchall()
 
 
-    create_table()
-    data_entry()
-    dynamic_data_entry()
-    time.sleep(1)
-    mycursor.close()
-    mydb.close()
+def delete_from_db():
+    sql = "DELETE FROM players WHERE team = %s"
+    tm = ("FC Real Madrid", "FC Villarreal", "FC Barcelona", "FC Atl. Madrid", "FC Valencia",
+          "FC Ath. Bilbao",
 
+          )
+    mycursor.execute(sql, tm)
+    mydb.commit()
+
+
+def update_from_db():
+    sql = "UPDATE players SET name = %s WHERE name = %s"
+    val = ("Keylor Navas", "Cristiano Ronaldo")
+
+    mycursor.execute(sql, val)
+
+    mydb.commit()
+
+
+# create_db()
+# create_table()
+# alter_table()
+# data_entry()
+#  read_from_db()
+# delete_from_db()
+# update_from_db()
+# mycursor.close()
+# mydb.close()
+
+
+mycursor.execute("SELECT name, team FROM players LIMIT 9 OFFSET 2")
+myresult = mycursor.fetchall()
+
+no_questions = 10
+
+if no_questions >= len(myresult):
+    print("Nu sunt decat " + str(len(myresult)) + " intrebari posibile!")
+
+questions = []
+index_deja_luat = []
+
+index = random.randint()
+for no_questions in range(no_questions + 1):
+    while (index_deja_luat.__contains__(index)):
+        l = len(myresult)
+print(l)
+res = myresult[5]
+print(res)
+print(res[0])
+print(res[1])
