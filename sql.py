@@ -1,5 +1,6 @@
 import mysql.connector
 import random
+import Question
 
 mydb = mysql.connector.connect(
     host="localhost",
@@ -97,5 +98,4 @@ player = res[0]
 team = res[1]
 
 questiontext = "Care este capitanul echipei {kwarg}?".format(kwarg=team)
-
-
+questions.append(Question(questiontext,player))
