@@ -86,15 +86,14 @@ if no_questions >= len(myresult):
 
 questions = []
 index_deja_luat = []
-index = random.randrange(len(myresult))
-print(index)
-index_deja_luat.append(index)
-print(index_deja_luat)
-# for no_questions in range(no_questions + 1):
-#     while (index_deja_luat.__contains__(index)):
-#         l = len(myresult)
-#         print(l)
-#         res = myresult[index]
-#         print(res)
-#         print(res[0])
-#         print(res[1])
+for no_questions in range(no_questions + 1):
+
+    index = random.randrange(len(myresult))
+    while (index_deja_luat.__contains__(index)):
+        index_deja_luat.append(index)
+
+res = myresult[index]
+player = res[0]
+team = res[1]
+print(player)
+print(team)
