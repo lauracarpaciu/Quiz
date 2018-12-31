@@ -95,5 +95,7 @@ for no_questions in range(no_questions + 1):
 res = myresult[index]
 player = res[0]
 team = res[1]
-print(player)
-print(team)
+
+questiontext = "Care este capitanul echipei {kwarg}?".format(kwarg=team)
+
+
