@@ -83,19 +83,21 @@ myresult = mycursor.fetchall()
 no_questions = 10
 
 if no_questions >= len(myresult):
-    print("Nu sunt decat " + str(len(myresult)) + " intrebari posibile!")
+    print("There are only" + str(len(myresult)) + "possible questions!")
 
 questions = []
-index_deja_luat = []
+index_already_taken = []
+
 for no_questions in range(no_questions + 1):
 
     index = random.randrange(len(myresult))
-    while (index_deja_luat.__contains__(index)):
-        index_deja_luat.append(index)
+
+    while (index_already_taken.__contains__(index)):
+        index_already_taken.append(index)
 
 res = myresult[index]
 player = res[0]
 team = res[1]
-
-questiontext = "Care este capitanul echipei {kwarg}?".format(kwarg=team)
-questions.append(Question(questiontext,player))
+questiontext = "Who is the captain of the team {kwarg}?".format(kwarg=team)
+print(questiontext)
+# questions.append(Question(questiontext, player))
