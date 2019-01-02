@@ -1,3 +1,5 @@
+from typing import Any
+
 import mysql.connector
 import random
 
@@ -80,14 +82,12 @@ mycursor.execute("SELECT name, team FROM players LIMIT 9 OFFSET 2")
 myresult = mycursor.fetchall()
 no_questions = 10
 
-
-def _generate(no_questions):
-    if no_questions >= len(myresult):
-        print("There are only " + str(len(myresult)) + " possible questions!")
-
+if no_questions >= len(myresult):
+    print("There are only " + str(len(myresult)) + " possible questions!")
 
 questions = []
 index_already_taken = []
+index_already_taken.clear()
 
 for no_questions in range(no_questions + 1):
 
@@ -123,3 +123,7 @@ class Question:
 
 
 questions.append(Question(questiontext, player))
+print(questions)
+
+for question in questions:
+    print(question)
