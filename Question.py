@@ -1,14 +1,26 @@
-from typing import Any
-
-
 class Question:
 
     def __init__(self, text, answer):
         self.text = text
         self.answer = answer
 
-    def __setattr__(self, name: str, value: Any) -> None:
-        super().__setattr__(name, value)
 
-    def __getattribute__(self, name: str) -> Any:
-        return super().__getattribute__(name)
+@property
+def text(self):
+    return self.__text
+
+
+@text.setter
+def text(self, text):
+    self.__text = text
+
+
+@property
+def answer(self):
+    return self.__answer
+
+
+@answer.setter
+def answer(self, answer):
+    self.__answer = answer
+

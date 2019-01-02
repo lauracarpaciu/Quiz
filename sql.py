@@ -1,6 +1,5 @@
 import mysql.connector
 import random
-import Question
 
 mydb = mysql.connector.connect(
     host="localhost",
@@ -79,11 +78,13 @@ def update_from_db():
 
 mycursor.execute("SELECT name, team FROM players LIMIT 9 OFFSET 2")
 myresult = mycursor.fetchall()
-
 no_questions = 10
 
-if no_questions >= len(myresult):
-    print("There are only" + str(len(myresult)) + "possible questions!")
+
+def _generate(no_questions):
+    if no_questions >= len(myresult):
+        print("There are only " + str(len(myresult)) + " possible questions!")
+
 
 questions = []
 index_already_taken = []
@@ -93,11 +94,32 @@ for no_questions in range(no_questions + 1):
     index = random.randrange(len(myresult))
 
     while (index_already_taken.__contains__(index)):
-        index_already_taken.append(index)
+        index_already_taken.__add__(index)
 
 res = myresult[index]
 player = res[0]
 team = res[1]
 questiontext = "Who is the captain of the team {kwarg}?".format(kwarg=team)
 print(questiontext)
-# questions.append(Question(questiontext, player))
+
+
+class Question:
+
+    def __init__(self, text, answer):
+        self.text = text
+        self.answer = answer
+
+    def get_text(self):
+        return self.__text
+
+    def set_text(self, text):
+        self.__text = text
+
+    def get_answer(self):
+        return self.__answer
+
+    def set_answer(self, answer):
+        self.__answer = answer
+
+
+questions.append(Question(questiontext, player))
