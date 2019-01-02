@@ -1,5 +1,3 @@
-from typing import Any
-
 import mysql.connector
 import random
 
@@ -79,12 +77,15 @@ def update_from_db():
 
 
 mycursor.execute("SELECT name, team FROM players LIMIT 9 OFFSET 2")
+
 myresult = mycursor.fetchall()
+
 no_questions = 10
 
 if no_questions >= len(myresult):
     print("There are only " + str(len(myresult)) + " possible questions!")
 
+score = 0
 questions = []
 index_already_taken = []
 index_already_taken.clear()
@@ -99,6 +100,7 @@ for no_questions in range(no_questions + 1):
 res = myresult[index]
 player = res[0]
 team = res[1]
+
 questiontext = "Who is the captain of the team {kwarg}?".format(kwarg=team)
 print(questiontext)
 
@@ -123,7 +125,18 @@ class Question:
 
 
 questions.append(Question(questiontext, player))
-print(questions)
 
-for question in questions:
-    print(question)
+try:
+    for question in questions:
+        print(question.get_text())
+
+        username = input()
+
+    if (username.__contains__(question.get_text())):
+        print("Well done! Good answer!")
+    else:
+        print("Answer is not correct!")
+        print("The correct answer is " + str(question.get_text()))
+
+except:
+    print("An error has occurred!")
