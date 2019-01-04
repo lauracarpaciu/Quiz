@@ -6,9 +6,9 @@ mydb = mysql.connector.connect(
     user="mirela",
     passwd="12345678",
     database="mypython"
-)
+)  # Returns MySQLConnection
 
-mycursor = mydb.cursor()
+mycursor = mydb.cursor()  # Returns a cursor-object
 
 
 def create_db():
@@ -104,11 +104,11 @@ team = res[1]
 questiontext = "Who is the captain of the team {kwarg}?".format(kwarg=team)
 
 
-class Question:
+class Question():
 
     def __init__(self, text, answer):
-        self.text = text
-        self.answer = answer
+        self.__text = text
+        self.__answer = answer
 
     def get_text(self):
         return self.__text
@@ -133,18 +133,20 @@ class Question:
 
 questions.append(Question(questiontext, player))
 
+# print(questions)
 
 # try:
 
 for question in questions:
-    print(repr(question))
+    print(question.get_text())
+
     username = input()
 
-if (username.__contains__(question.get_answer())):
-    print("Well done! Good answer!")
-else:
-    print("Answer is not correct!")
-    print("The correct answer is " + str(question.get_text()))
+    if (username.__contains__(question.get_answer())):
+        print("Well done! Good answer!")
+    else:
+        print("Answer is not correct!")
+        print("The correct answer is " + str(question.get_answer()))
 
 # except:
 #     print("An error has occurred!")
