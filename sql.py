@@ -102,7 +102,6 @@ player = res[0]
 team = res[1]
 
 questiontext = "Who is the captain of the team {kwarg}?".format(kwarg=team)
-print(questiontext)
 
 
 class Question:
@@ -123,14 +122,23 @@ class Question:
     def set_answer(self, answer):
         self.__answer = answer
 
+    def __str__(self):
+        return str(self.text)
+
+    def __str__(self):
+        return str(self.answer)
+
+    __repr__ = __str__
+
 
 questions.append(Question(questiontext, player))
+print(questions)
 
 try:
+
     for question in questions:
         print(question.get_text())
-
-        username = input()
+    username = input()
 
     if (username.__contains__(question.get_text())):
         print("Well done! Good answer!")
