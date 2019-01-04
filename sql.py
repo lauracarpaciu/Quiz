@@ -132,19 +132,19 @@ class Question:
 
 
 questions.append(Question(questiontext, player))
-print(questions)
 
-try:
 
-    for question in questions:
-        print(question.get_text())
+# try:
+
+for question in questions:
+    print(repr(question))
     username = input()
 
-    if (username.__contains__(question.get_text())):
-        print("Well done! Good answer!")
-    else:
-        print("Answer is not correct!")
-        print("The correct answer is " + str(question.get_text()))
+if (username.__contains__(question.get_answer())):
+    print("Well done! Good answer!")
+else:
+    print("Answer is not correct!")
+    print("The correct answer is " + str(question.get_text()))
 
-except:
-    print("An error has occurred!")
+# except:
+#     print("An error has occurred!")
