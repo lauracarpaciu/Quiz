@@ -133,20 +133,24 @@ class Question():
 
 questions.append(Question(questiontext, player))
 
-# print(questions)
+try:
 
-# try:
-
-for question in questions:
-    print(question.get_text())
+    for question in questions:
+        print(question.get_text())
 
     username = input()
 
     if (username.__contains__(question.get_answer())):
+        score + 1
         print("Well done! Good answer!")
+
     else:
         print("Answer is not correct!")
         print("The correct answer is " + str(question.get_answer()))
 
-# except:
-#     print("An error has occurred!")
+except AttributeError:
+    print("An error has occurred!")
+
+
+def _displayScore():
+    print("Your final score is {kwarg}?".format(kwarg=score))
