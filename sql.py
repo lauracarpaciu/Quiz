@@ -155,15 +155,17 @@ class Question():
 questions.append(Question(questiontext, player))
 
 try:
+    start = time.time()
 
     for question in questions:
         print(question.get_text())
+        print(question.get_answer())
+        username = input()
 
-    username = input()
+    if (username in question.get_answer()):
 
-    if (username.__contains__(question.get_answer())):
-        score + 1
         print("Well done! Good answer!")
+        score += 1
 
     else:
         print("Answer is not correct!")
@@ -171,6 +173,12 @@ try:
 
 except AttributeError:
     print("An error has occurred!")
-
-# def _displayScore():
-#     print("Your final score is {kwarg}?".format(kwarg=score))
+done = True
+end = time.time()
+temp = end - start
+hours = temp // 3600
+temp = temp - 3600 * hours
+minutes = temp // 60
+seconds = temp - 60 * minutes
+print('You have answered on %d:%d:%d seconds' % (hours, minutes, seconds))
+print("Your final score is {kwarg}!".format(kwarg=score))
