@@ -1,5 +1,7 @@
 import mysql.connector
 import random
+import time
+import datetime
 
 mydb = mysql.connector.connect(
     host="localhost",
@@ -23,6 +25,10 @@ def alter_table():
     mycursor.execute("ALTER TABLE players ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY")
 
 
+def alter_table_second():
+    mycursor.execute("ALTER TABLE players ADD (datestamp VARCHAR (255),keyword VARCHAR(255)) ")
+
+
 def data_entry():
     sql = "INSERT INTO players (team, name) VALUES (%s, %s)"
     val = [
@@ -38,6 +44,19 @@ def data_entry():
             over the list of parameters in seq_params.'''
     mycursor.executemany(sql, val)
 
+    mydb.commit()
+
+
+def dynamic_data_entry():
+    unix = time.time()
+    date = str(datetime.datetime.fromtimestamp(unix).strftime("%Y-%m-%d %H:%M:%S"))
+    print(date)
+    keyword = "python"
+    val = [
+        ["FC Real Madrid", "Cristiano Ronaldo"], ["FC Villarreal", "Bruno Soriano"], ["FC Barcelona", "Lionel Messi"],
+    ]
+
+    mycursor.execute("INSERT INTO players(team,name,datestamp,keyword) VALUES (%s,%s,%s,%s)"(val, date, keyword))
     mydb.commit()
 
 
@@ -67,9 +86,11 @@ def update_from_db():
 
 # create_db()
 # create_table()
+# alter_table_second()
 # alter_table()
 # data_entry()
-#  read_from_db()
+# dynamic_data_entry()
+# read_from_db()
 # delete_from_db()
 # update_from_db()
 # mycursor.close()
@@ -146,11 +167,10 @@ try:
 
     else:
         print("Answer is not correct!")
-        print("The correct answer is " + str(question.get_answer()))
+        print("The correct answer is " + str(question.get_answer()) + "!")
 
 except AttributeError:
     print("An error has occurred!")
 
-
-def _displayScore():
-    print("Your final score is {kwarg}?".format(kwarg=score))
+# def _displayScore():
+#     print("Your final score is {kwarg}?".format(kwarg=score))
