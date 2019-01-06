@@ -3,12 +3,13 @@ import random
 import time
 import datetime
 
+# Returns MySQLConnection
 mydb = mysql.connector.connect(
     host="localhost",
     user="mirela",
     passwd="12345678",
     database="mypython"
-)  # Returns MySQLConnection
+)
 
 mycursor = mydb.cursor()  # Returns a cursor-object
 
@@ -42,14 +43,15 @@ def data_entry():
 
     '''The executemany() method will execute the operation iterating
             over the list of parameters in seq_params.'''
-    mycursor.executemany(sql, val)
-
+    mycursor.executemany(sql, val)  # Executes the given operation
+    """Remove temporary save dir: rollback will no longer be possible."""
     mydb.commit()
 
 
 def dynamic_data_entry():
-    unix = time.time()
-    date = str(datetime.datetime.fromtimestamp(unix).strftime("%Y-%m-%d %H:%M:%S"))
+    unix = time.time()  # Return the current time in seconds since the Epoch.
+    date = str(datetime.datetime.fromtimestamp(unix).strftime(
+        "%Y-%m-%d %H:%M:%S"))  # """Construct a datetime from a POSIX timestamp (like time.time()).
     print(date)
     keyword = "python"
     val = [
@@ -101,7 +103,7 @@ mycursor.execute("SELECT name, team FROM players LIMIT 9 OFFSET 2")
 
 myresult = mycursor.fetchall()
 
-no_questions = 5
+no_questions = 8
 
 if no_questions >= len(myresult):
     raise ValueError("There are only " + str(len(myresult)) + " possible questions!")
@@ -111,6 +113,7 @@ questions = []
 index_already_taken = []
 index_already_taken.clear()
 replay_user = ""
+
 for no_questions in range(no_questions + 1):
 
     index = random.randrange(len(myresult))
@@ -173,13 +176,17 @@ try:
 
 except AttributeError:
     print("An error has occurred!")
+
 done = True
+
 end = time.time()
+
 temp = end - start
 hours = temp // 3600
 temp = temp - 3600 * hours
 minutes = temp // 60
 seconds = temp - 60 * minutes
+
 print("You have answered on %d:%d:%d seconds" % (hours, minutes, seconds))
 print("Your final score is {kwarg}!".format(kwarg=score))
 
