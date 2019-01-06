@@ -103,10 +103,8 @@ myresult = mycursor.fetchall()
 
 no_questions = 5
 
-try:
-    no_questions >= len(myresult)
-except IOError:
-    print("There are only " + str(len(myresult)) + " possible questions!")
+if no_questions >= len(myresult):
+    raise ValueError("There are only " + str(len(myresult)) + " possible questions!")
 
 score = 0
 questions = []
