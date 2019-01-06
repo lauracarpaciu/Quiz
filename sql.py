@@ -110,7 +110,7 @@ score = 0
 questions = []
 index_already_taken = []
 index_already_taken.clear()
-
+replay_user = ""
 for no_questions in range(no_questions + 1):
 
     index = random.randrange(len(myresult))
@@ -180,5 +180,12 @@ hours = temp // 3600
 temp = temp - 3600 * hours
 minutes = temp // 60
 seconds = temp - 60 * minutes
-print('You have answered on %d:%d:%d seconds' % (hours, minutes, seconds))
+print("You have answered on %d:%d:%d seconds" % (hours, minutes, seconds))
 print("Your final score is {kwarg}!".format(kwarg=score))
+
+while replay_user != "d" and replay_user != "n":
+    print("Do you want to replay the game ? Y/N")
+    replay_user = input()
+
+    if replay_user == "n":
+        print("Good bye !. Press \"Enter!\"")
