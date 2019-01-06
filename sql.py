@@ -183,7 +183,7 @@ seconds = temp - 60 * minutes
 print("You have answered on %d:%d:%d seconds" % (hours, minutes, seconds))
 print("Your final score is {kwarg}!".format(kwarg=score))
 
-while replay_user != "d" and replay_user != "n":
+while replay_user != "d" and "n":
     print("Do you want to replay the game ? Y/N")
     replay_user = input()[0]
 
