@@ -114,13 +114,13 @@ index_already_taken = []
 replay_user = ""
 
 index_already_taken.clear()  # -- remove all items
-
-for i in range(1,no_questions + 1):
+i = 1
+for i in range(no_questions + 1):
     i = +1
     index = random.randrange(len(myresult))
 
-    while (index_already_taken.__contains__(index)):
-        index_already_taken.__add__(index)
+while (index_already_taken.__contains__(index)):
+    index_already_taken.__add__(index)
 
 res = myresult[index]
 player = res[0]
