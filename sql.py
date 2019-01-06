@@ -101,9 +101,11 @@ mycursor.execute("SELECT name, team FROM players LIMIT 9 OFFSET 2")
 
 myresult = mycursor.fetchall()
 
-no_questions = 10
+no_questions = 5
 
-if no_questions >= len(myresult):
+try:
+    no_questions >= len(myresult)
+except IOError:
     print("There are only " + str(len(myresult)) + " possible questions!")
 
 score = 0
