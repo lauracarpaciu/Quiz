@@ -185,7 +185,7 @@ print("Your final score is {kwarg}!".format(kwarg=score))
 
 while replay_user != "d" and replay_user != "n":
     print("Do you want to replay the game ? Y/N")
-    replay_user = input()
+    replay_user = input()[0]
 
     if replay_user == "n":
         print("Good bye !. Press \"Enter!\"")
