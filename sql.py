@@ -103,31 +103,6 @@ mycursor.execute("SELECT name, team FROM players LIMIT 9 OFFSET 2")
 
 myresult = mycursor.fetchall()
 
-no_questions = 8
-
-if no_questions >= len(myresult):
-    raise ValueError("There are only " + str(len(myresult)) + " possible questions!")
-
-score = 0
-questions = []
-index_already_taken = []
-replay_user = ""
-
-index_already_taken.clear()  # -- remove all items
-i = 1
-for i in range(no_questions + 1):
-    i = +1
-    index = random.randrange(len(myresult))
-
-while (index_already_taken.__contains__(index)):
-    index_already_taken.__add__(index)
-
-res = myresult[index]
-player = res[0]
-team = res[1]
-
-questiontext = "Who is the captain of the team {kwarg}?".format(kwarg=team)
-
 
 class Question():
 
@@ -155,6 +130,32 @@ class Question():
 
     __repr__ = __str__
 
+
+no_questions = 8
+
+if no_questions >= len(myresult):
+    raise ValueError("There are only " + str(len(myresult)) + " possible questions!")
+
+score = 0
+questions = []
+index_already_taken = []
+replay_user = ""
+
+index_already_taken.clear()  # -- remove all items
+
+for i in range(1, no_questions + 1):
+
+    index = random.randrange(len(myresult))
+    index_already_taken.append(index)
+
+    for index in index_already_taken:
+        index=index
+
+res = myresult[index]
+player = res[0]
+team = res[1]
+
+questiontext = "Who is the captain of the team {kwarg}?".format(kwarg=team)
 
 questions.append(Question(questiontext, player))
 
