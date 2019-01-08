@@ -156,17 +156,13 @@ try:
 
     for question in questions:
         print(question.get_text())
-        print(question.get_answer())
         username = input()
-        #
-        # if (username in question.get_answer()):
-
-        print("Well done! Good answer!")
-        score += 1
-
-    else:
-        print("Answer is not correct!")
-        print("The correct answer is " + str(question.get_answer()) + "!")
+        if username in question.get_answer():
+            print("Well done! Good answer!")
+            score += 1
+        else:
+            print("Answer is not correct!")
+            print("The correct answer is " + str(question.get_answer()) + "!")
 
 except AttributeError:
     print("An error has occurred!")
