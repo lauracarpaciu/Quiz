@@ -147,7 +147,7 @@ for player in res.keys(): {players.append(player)}
 for i in range(1, no_questions + 1):
     player = players.__getitem__(random.randrange(len(players)))
     team = res.get(player)
-      # teams.remove(random.randrange(len(teams)))
+    # teams.remove(random.randrange(len(teams)))
     questiontext = "Who is the captain of the team {kwarg}?".format(kwarg=team)
     questions.append(Question(questiontext, player))
 
@@ -182,10 +182,13 @@ minutes = temp // 60
 seconds = temp - 60 * minutes
 
 print("You have answered on %d:%d:%d seconds" % (hours, minutes, seconds))
+
 print("Your final score is {kwarg}!".format(kwarg=score))
 
 while replay_user != "d" and "n":
+
     print("Do you want to replay the game ? Y/N")
+
     replay_user = input()[0]
 
     if replay_user == "n":
