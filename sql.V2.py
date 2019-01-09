@@ -147,7 +147,7 @@ for player in res.keys(): {players.append(player)}
 for i in range(1, no_questions + 1):
     player = players.__getitem__(random.randrange(len(players)))
     team = res.get(player)
-    # teams.remove(random.randrange(len(teams)))
+    players.__delitem__(random.randrange(len(players)))
     questiontext = "Who is the captain of the team {kwarg}?".format(kwarg=team)
     questions.append(Question(questiontext, player))
 
